@@ -1,22 +1,6 @@
- lfs setquota -u administrator.imgge --block-softlimit 1024G --block-hardlimit 0 /lustre
- lfs setquota -u nikola.jovisic.ivi  --block-softlimit 1024G --block-hardlimit 0 /lustre
- lfs setquota -u biljana.stankovic.imgge --block-softlimit 1024G --block-hardlimit 0 /lustre
- lfs setquota -u milica.jokovic.genial --block-softlimit 1024G --block-hardlimit 0 /lustre
- lfs setquota -u training.imgge --block-softlimit 1024G --block-hardlimit 0 /lustre
- lfs setquota -u ana.velimirovic.genial --block-softlimit 1024G --block-hardlimit 0 /lustre
- lfs setquota -u nikola.kotur.imgge --block-softlimit 1024G --block-hardlimit 0 /lustre
- lfs setquota -u stefan.jovanovic.diratech --block-softlimit 1024G --block-hardlimit 0 /lustre
- lfs setquota -u milica.skipina.ivi --block-softlimit 1024G --block-hardlimit 0 /lustre
- lfs setquota -u ana.spasic.genial --block-softlimit 1024G --block-hardlimit 0 /lustre
- lfs setquota -u dusan.radojevic.imgge --block-softlimit 1024G --block-hardlimit 0 /lustre
- lfs setquota -u marko.kuburic.ivi --block-softlimit 1024G --block-hardlimit 0 /lustre
- lfs setquota -u adela.ljajic.ivi --block-softlimit 1024G --block-hardlimit 0 /lustre
- lfs setquota -u vladimir.vincan.ivi --block-softlimit 1024G --block-hardlimit 0 /lustre
- lfs setquota -u milos.tomic.etf --block-softlimit 1024G --block-hardlimit 0 /lustre
- lfs setquota -u ivana.galic.imgge --block-softlimit 1024G --block-hardlimit 0 /lustre
- lfs setquota -u vuk.lazovic.kg --block-softlimit 1024G --block-hardlimit 0 /lustre
- lfs setquota -u bojana.basaragin.ivi --block-softlimit 1024G --block-hardlimit 0 /lustre
- lfs setquota -u goran.martic.ftn --block-softlimit 1024G --block-hardlimit 0 /lustre
- lfs setquota -u jelena.kusic.imgge --block-softlimit 1024G --block-hardlimit 0 /lustre
- lfs setquota -u darija.medvecki.ivi --block-softlimit 1024G --block-hardlimit 0 /lustre
- lfs setquota -u gorana.gojic.ivi --block-softlimit 1024G --block-hardlimit 0 /lustre
+#!/bin/bash
+while read -r USERNAME; do
+             [[ -z "$USERNAME" ]] || [[ "$USERNAME" == "data" ]] && continue
+    
+             lfs setquota -u "$USERNAME" --block-softlimit 1024G --block-hardlimit 0 /lustre    
+done < <(lfs find /lustre/data -maxdepth 1 -type d | awk -F/ 'NF>3 && $0 != "/lustre/data" {print $NF}') 
