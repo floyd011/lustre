@@ -1,0 +1,19 @@
+global:
+  scrape_interval: 1m
+  evaluation_interval: 1m
+
+scrape_configs:
+  # Node exporter (sada sa Lustre metrikama)
+  - job_name: 'node'
+    static_configs:
+      - targets: ['node-exporter:9100']
+    # Dodaj ovaj relabel config da bi Lustre metrike bile posebne
+    metric_relabel_configs:
+      - source_labels: [__name__]
+        regex: 'lustre_.*|filesystem_.*'
+        action: keep
+
+  # Prometheus self-monitoring
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
