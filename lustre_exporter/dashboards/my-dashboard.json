@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 8,
+  "id": 1,
   "links": [],
   "panels": [
     {
@@ -94,7 +94,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cf6i88xoxli4gf"
+            "uid": "cf688xoxli4gf"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -108,7 +108,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cf6i88xoxli4gf"
+            "uid": "bf6aj14tyvx8ge"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -209,7 +209,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cf6i88xoxli4gf"
+            "uid": "cf688xoxli4gf"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -284,7 +284,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cf6i88xoxli4gf"
+            "uid": "cf688xoxli4gf"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -373,7 +373,7 @@
         ]
       },
       "gridPos": {
-        "h": 10,
+        "h": 17,
         "w": 11,
         "x": 0,
         "y": 4
@@ -383,19 +383,14 @@
         "cellHeight": "sm",
         "enablePagination": true,
         "showHeader": true,
-        "sortBy": [
-          {
-            "desc": true,
-            "displayName": "Zauzeto"
-          }
-        ]
+        "sortBy": []
       },
       "pluginVersion": "12.2.1",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cf6i88xoxli4gf"
+            "uid": "cf688xoxli4gf"
           },
           "editorMode": "builder",
           "exemplar": false,
@@ -409,7 +404,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cf6i88xoxli4gf"
+            "uid": "cf688xoxli4gf"
           },
           "editorMode": "builder",
           "exemplar": false,
@@ -554,7 +549,7 @@
         ]
       },
       "gridPos": {
-        "h": 10,
+        "h": 17,
         "w": 13,
         "x": 11,
         "y": 4
@@ -576,7 +571,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cf6i88xoxli4gf"
+            "uid": "cf688xoxli4gf"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -590,7 +585,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cf6i88xoxli4gf"
+            "uid": "cf688xoxli4gf"
           },
           "editorMode": "builder",
           "exemplar": false,
@@ -605,7 +600,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cf6i88xoxli4gf"
+            "uid": "cf688xoxli4gf"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -661,6 +656,7 @@
     }
   ],
   "preload": false,
+  "refresh": "1m",
   "schemaVersion": 42,
   "tags": [],
   "templating": {
@@ -670,9 +666,11 @@
     "from": "now-6h",
     "to": "now"
   },
-  "timepicker": {},
+  "timepicker": {
+    "hidden": true
+  },
   "timezone": "browser",
   "title": "my",
   "uid": "adjzh2g",
-  "version": 139
+  "version": 23
 }
