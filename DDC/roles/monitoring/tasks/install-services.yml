@@ -1,0 +1,53 @@
+---
+- block:
+
+  - name: Deploy systemd service for docker-compose (start compose at boot)
+    template:
+      src: docker-compose-app.service.j2
+      dest: /etc/systemd/system/docker-compose-app.service
+      owner: root
+      group: root
+      mode: '0644'
+
+  - name: Deploy lustre exporter service unit
+    template:
+      src: lustre-exporter.service.j2
+      dest: /etc/systemd/system/lustre-exporter.service
+      owner: root
+      group: root
+      mode: '0644'
+
+  - name: Deploy lustre exporter timer unit
+    template:
+      src: lustre-exporter.timer.j2
+      dest: /etc/systemd/system/lustre-exporter.timer
+      owner: root
+      group: root
+      mode: '0644'
+
+  - name: Reload systemd daemon
+    systemd:
+      daemon_reload: yes
+
+  - name: Enable and start docker-compose-app.service
+    systemd:
+      name: docker-compose-app.service
+      enabled: yes
+      state: started
+      daemon_reload: yes
+
+  - name: Enable and start lustre-exporter.timer
+    systemd:
+      name: lustre-exporter.timer
+      enabled: yes
+      state: started
+      daemon_reload: yes
+
+  - name: Show timer status
+    command: systemctl list-timers --no-pager --all
+    register: timers_out
+
+  - debug:
+      var: timers_out.stdout_lines 
+
+  tags: service

@@ -1,0 +1,12 @@
+---
+- hosts: monitor
+  gather_facts: true
+  become: yes
+  become_method: sudo
+  roles:
+    - monitoring
+  tasks:
+    - name: Debug
+      debug: msg="{{ ansible_run_tags }}"
+      tags:
+        - always

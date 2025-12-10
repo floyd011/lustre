@@ -1,0 +1,15 @@
+###################################################
+# Dispatch role commands
+###################################################
+
+- name: Install stack
+  include_tasks: install-stack.yml
+  tags: stack
+  when: inventory_hostname in ['monitor']
+
+- name: Install services
+  include_tasks: install-services.yml
+  tags: service
+  when: inventory_hostname in ['monitor']
+
+

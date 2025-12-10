@@ -1,0 +1,10 @@
+[Unit]
+Description=Run Lustre Home Exporter every 3 hour
+
+[Timer]
+OnBootSec=5m
+OnUnitActiveSec=3h
+Unit=lustre-exporter.service
+
+[Install]
+WantedBy=timers.target

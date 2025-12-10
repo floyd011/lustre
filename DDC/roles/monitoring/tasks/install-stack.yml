@@ -1,0 +1,86 @@
+- block:
+
+  - name: Check data folders exist
+    file: name={{ item }} state=directory
+    with_items:
+      - "{{ monitoring_folder }}"
+
+  - name: Check data folders exist
+    file: name={{ item }} state=directory
+    with_items:
+      - "{{ monitoring_scripts_folder }}"
+
+  - name: Check data folders exist
+    file: name={{ item }} state=directory
+    with_items:
+      - "{{ monitoring_folder }}/rules"
+
+  - name: Check data folders exist
+    file: name={{ item }} state=directory
+    with_items:
+      - "{{ monitoring_folder }}/exporter"
+
+  - name: Check data folders exist
+    file: name={{ item }} state=directory
+    with_items:
+      - "{{ monitoring_folder }}/grafana"
+
+  - name: Check data folders exist
+    file: name={{ item }} state=directory
+    with_items:
+      - "{{ monitoring_folder }}/prometheus"
+
+  - name: Ensure prometheus data dir ownership
+    file:
+      path: "{{ monitoring_folder }}/prometheus"
+      owner: 65534
+      group: 65534
+      recurse: yes
+
+  - name: Ensure grafana data dir ownership
+    file:
+      path: "{{ monitoring_folder }}/grafana"
+      owner: 472
+      group: 472
+      recurse: yes
+
+  - name: copy monitoring files
+    copy:
+      src:  "{{ role_path }}/files/{{ item }}/" 
+      dest: "{{ monitoring_folder }}/{{ item }}"
+    with_items:
+      - prometheus.yml
+      - lustre_exporter.sh
+
+  - name: copy monitoring folders
+    copy:
+      src:  "{{ role_path }}/files/{{ item }}/" 
+      dest: "{{ monitoring_folder }}/{{ item }}"
+      recursive: yes
+    with_items:
+      - "scripts"
+      - "grafana"
+
+  - name: Deploy lustre stack
+    template:
+      src: docker-compose.yml.j2
+      dest: "{{ monitoring_folder }}/docker-compose.yml"
+
+  - name: Changing perm of "/scripts/*.sh", adding "+x"
+    file: 
+      dest: "{{ monitoring_scripts_folder }}/{{ item }}"
+      mode: a+x
+    with_items:
+      - listbyuser.sh
+      - listq.sh
+      - lsetquote.sh
+
+  - name: Changing perm of "/*.sh", adding "+x"
+    file: 
+      dest: "{{ monitoring_folder }}/{{ item }}"
+      mode: a+x
+    with_items:
+      - lustre_exporter.sh
+
+  tags: stack
+ 

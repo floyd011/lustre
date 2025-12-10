@@ -1,0 +1,4 @@
+monitoring_folder: "/root/lustre-exporter"
+monitoring_scripts_folder: "/root/lustre-exporter/scripts"
+public_ip: 204.12.205.28
+sshd_port: 22

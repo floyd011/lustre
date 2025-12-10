@@ -1,0 +1,4 @@
+prometheus_docker_image: prom/prometheus:v3.7.2
+grafana_docker_image: grafana/grafana:12.2.1
+node_exporter_docker_image: prom/node-exporter:v1.10.2
+

@@ -1,0 +1,7 @@
+[Unit]
+Description=Lustre Home Disk Exporter
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart={{ monitoring_folder }}/lustre_exporter.sh
